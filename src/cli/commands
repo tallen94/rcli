@@ -1,0 +1,42 @@
+source ~/.rcli/apps
+
+function pp() {
+	forge pkg && vagrant provision
+}
+
+function jpp() {
+	./bin/build.sh && pp
+}
+
+function mvnclean() {
+	mvn dependency:purge-local-repository -DactTransitively=false -DreResolve=false
+}
+
+function update() {
+	(
+	    cd $REMITLY_ROOT/"${apps[$1]}";
+	    git checkout master &&
+	    git pull upstream master &&
+	    git push origin master
+	)
+}
+
+function start() {
+	( cd $REMITLY_ROOT/"${apps[$1]}"; vagrant up )
+}
+
+function stop() {
+	( cd $REMITLY_ROOT/"${apps[$1]}"; vagrant halt )
+}
+
+function reload() {
+	( cd $REMITLY_ROOT/"${apps[$1]}"; vagrant reload )
+}
+
+function ropen() {
+	cd $REMITLY_ROOT/"${apps[$1]}"
+}
+
+function rapps() {
+	echo "${!apps[@]}"
+}

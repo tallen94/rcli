@@ -1,0 +1,9 @@
+REMITLY_ROOT=~/remitly-vagrant/html
+declare -A apps
+apps=([cx]=CXCoreService
+[plat]=platform/api
+[db]=vagrant-dev/devdb
+[port]=portal
+[jcom]=JavaCommon
+[fund]=FundingService
+)
